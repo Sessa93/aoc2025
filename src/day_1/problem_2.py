@@ -68,31 +68,3 @@ class ProblemDay2(AbstractProblem):
             password += passes
             position = end_position
         return password
-
-
-if __name__ == "__main__":
-    print(Problem2())
-    # test_1 = "R1000\n"
-    # res = get_password(directions=read_rotations_from_string(test_1))
-    # print("Password: ", res)
-    # assert res == 10
-    #
-    # test_2 = """
-    #     L68
-    #     L30
-    #     R48
-    #     L5
-    #     R60
-    #     L55
-    #     L1
-    #     L99
-    #     R14
-    #     L82
-    # """
-    # res = get_password(directions=read_rotations_from_string(test_2))
-    # print("Password: ", res)
-    # assert res == 6
-    #
-    # res = get_password(directions=read_rotations_from_file("./input_1.txt"))
-    # print("Password: ", res)
-    # assert res == 6475

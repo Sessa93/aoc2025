@@ -9,12 +9,18 @@ class Problem1(AbstractProblem):
         super().__init__(name="Problem 1 Day 2", input=input)
 
     def get_input_from_string(self, input_string: str):
-        return [range(int(start), int(end) + 1) for start, end in (part.split('-') for part in input_string.split(','))]
+        return [
+            range(int(start), int(end) + 1)
+            for start, end in (part.split("-") for part in input_string.split(","))
+        ]
 
     def get_input_from_file(self, file_path: str):
-        with open(file_path, 'r') as f:
+        with open(file_path, "r") as f:
             ranges_string = f.read().strip()
-            return [range(int(start), int(end) + 1) for start, end in (part.split('-') for part in ranges_string.split(','))]
+            return [
+                range(int(start), int(end) + 1)
+                for start, end in (part.split("-") for part in ranges_string.split(","))
+            ]
 
     @staticmethod
     def is_valid_id(id: int) -> bool:
@@ -35,7 +41,3 @@ class Problem1(AbstractProblem):
                 if not self.is_valid_id(i):
                     total_sum += i
         return total_sum
-
-
-if __name__ == '__main__':
-    print(Problem1())

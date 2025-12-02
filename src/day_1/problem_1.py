@@ -49,7 +49,3 @@ class ProblemDay1(AbstractProblem):
             if position == 0:
                 password += 1
         return password
-
-
-if __name__ == "__main__":
-    print(ProblemDay1())

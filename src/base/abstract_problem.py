@@ -4,7 +4,9 @@ from typing import Any
 
 
 class AbstractProblem(abc.ABC):
-    def __init__(self, name: str, input: Any = Path(__file__).parent / "data/input.txt"):
+    def __init__(
+        self, name: str, input: Any = Path(__file__).parent / "data/input.txt"
+    ):
         self.name = name
         if self.is_str_input(input_data=input):
             self.input = self.get_input_from_string(input_string=input)

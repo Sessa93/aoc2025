@@ -1,5 +1,6 @@
 from src.day_1.problem_1 import ProblemDay1
 
+
 class TestProblem1Day1:
     def test_simple_rotation(self):
         problem = ProblemDay1(input="R1000")
@@ -9,7 +10,8 @@ class TestProblem1Day1:
         assert answer == 0
 
     def test_simple_more_complicated_rotation(self):
-        problem = ProblemDay1(input="""
+        problem = ProblemDay1(
+            input="""
                                     L68
                                     L30
                                     R48
