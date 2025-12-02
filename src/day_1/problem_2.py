@@ -14,7 +14,7 @@ class RotationDirection(enum.Enum):
     R = "R"
 
 
-class Problem2(AbstractProblem):
+class ProblemDay2(AbstractProblem):
     def __init__(self, input=Path(__file__).parent / "data/input.txt"):
         super().__init__(name="Problem 2 Day 1", input=input)
 
@@ -37,7 +37,8 @@ class Problem2(AbstractProblem):
             if len(line.strip()) > 0
         ]
 
-    def update_position(self, start_position, degrees) -> Tuple[int, int]:
+    @staticmethod
+    def update_position(start_position, degrees) -> Tuple[int, int]:
         full_rotations = abs(degrees) // MAX_POSITION
         abs_degrees = abs(degrees) % MAX_POSITION
 
