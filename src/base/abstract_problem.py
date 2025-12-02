@@ -1,4 +1,5 @@
 import abc
+import time
 from pathlib import Path
 from typing import Any
 
@@ -14,7 +15,11 @@ class AbstractProblem(abc.ABC):
             self.input = self.get_input_from_file(file_path=input)
 
     def __repr__(self):
-        return f"Answer to problem {self.name}: {self.answer()}"
+        start = time.perf_counter()
+        answer = self.answer()
+        elapsed = time.perf_counter() - start
+
+        return f"Answer to {self.name}: {answer}, execution time: {float(f'{elapsed:.4f}')} seconds"
 
     @staticmethod
     def is_str_input(input_data: Any) -> bool:

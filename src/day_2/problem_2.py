@@ -35,7 +35,7 @@ class Problem2(AbstractProblem):
 
         return True
 
-    def answer(self) -> any:
+    def answer(self):
         total_sum = 0
         for r in self.input:
             for i in r:
