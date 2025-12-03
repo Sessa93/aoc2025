@@ -19,4 +19,4 @@ class TestProblem1Day3:
         problem = Problem2()
         answer = problem.answer()
 
-        assert answer == 17196
+        assert answer == 171039099596062

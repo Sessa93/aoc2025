@@ -35,15 +35,3 @@ class Problem2(AbstractProblem):
         with ThreadPoolExecutor() as executor:
             results = list(executor.map(self.get_max_from_bank, self.input))
         return sum(results)
-
-if __name__ == "__main__":
-    input = """
-        987654321111111
-        811111111111119
-        234234234234278
-        818181911112111
-    """
-
-    problem = Problem2()
-    answer = problem.answer()
-    print(answer)
