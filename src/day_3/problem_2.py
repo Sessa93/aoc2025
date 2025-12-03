@@ -8,7 +8,7 @@ from src.base.abstract_problem import AbstractProblem
 
 class Problem2(AbstractProblem):
     def __init__(self, input=Path(__file__).parent / "data/input.txt"):
-        super().__init__(name="Problem 1 Day 3", input=input)
+        super().__init__(name="Problem 2 Day 3", input=input)
 
     def get_input_from_string(self, input_string: str):
         return list(map(str.strip, input_string.strip().split("\n")))
