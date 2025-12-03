@@ -1,14 +1,16 @@
 services:
-  test-problems:
+  test:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
       RUNTIME_TYPE: test
 
-  execute-problems:
+  execute:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      RUNTIME_TYPE: execute
+      RUNTIME_TYPE: execute-single
+      DAY: ${DAY}
+      PROBLEM: ${PROBLEM}

@@ -1,5 +1,6 @@
 import importlib
 import inspect
+import os
 import pkgutil
 
 from src.base.abstract_problem import AbstractProblem
@@ -32,8 +33,15 @@ def iter_problem_classes(package_name: str):
 
 def run_all_problems(package_name: str = "src"):
     for cls in iter_problem_classes(package_name):
+        day = os.environ.get('DAY')
+        problem = os.environ.get('PROBLEM')
         try:
-            print(cls())
+            if day and problem:
+                if f"day_{day}.problem_{problem}" in str(cls):
+                    print(cls())
+                    break
+            else:
+                print(cls())
         except Exception as exc:
             print(f"Error running {cls.__module__}.{cls.__name__}: {exc}")
 
