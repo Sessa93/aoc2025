@@ -1,11 +1,13 @@
 My personal collection of solutions for
 [Advent of Code challenges 2025](https://adventofcode.com/2025)
-### Run Tests
+
+## Using Docker
+### Run tests
 ```
 docker compose up --build test
 ```
 
-### Run Problems
+### Run problems
 ```
 docker compose up --build execute
 ```
@@ -13,4 +15,25 @@ docker compose up --build execute
 ### Get solution for specific day-problem combination
 ```
 DAY=day-number PROBLEM=problem-number docker compose up --build execute
+```
+
+## Using uv
+### Install dependencies
+```
+uv sync
+```
+
+### Run tests
+```
+uv run pytest
+```
+
+### Run problems
+```
+PYTHONPATH=$(pwd) uv run python src/main.py
+```
+
+### Get solution for specific day-problem combination
+```
+PYTHONPATH=$(pwd) DAY= uv run python src/main.py
 ```
