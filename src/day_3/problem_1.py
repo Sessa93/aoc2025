@@ -2,7 +2,7 @@ import itertools
 from pathlib import Path
 from typing import Any
 
-from src.base.abstract_problem import AbstractProblem
+from base.abstract_problem import AbstractProblem
 
 
 class Problem1(AbstractProblem):
