@@ -1,0 +1,14 @@
+services:
+  test-problems:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RUNTIME_TYPE: test
+
+  execute-problems:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RUNTIME_TYPE: execute
