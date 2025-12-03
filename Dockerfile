@@ -32,6 +32,7 @@ COPY ./entrypoint.sh /aoc
 COPY ./src /aoc/src
 
 RUN chmod +x /aoc/entrypoint.sh
+ENV PYTHONPATH="/aoc:$PYTHONPATH"
 ENTRYPOINT ["/aoc/entrypoint.sh"]
 
 FROM runtime-base as production

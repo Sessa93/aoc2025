@@ -19,27 +19,17 @@ class Problem2(AbstractProblem):
             return self.get_input_from_string(input_string=banks)
 
     @staticmethod
-    def to_int(tuple_str):
-        return int("".join(map(str, tuple_str)))
-
-    @staticmethod
-    def combs(k, n):
-        p = [1]
-        f = 1 << k
-        for i in range(1, n):
-            p.append((p[-1] * f) // i)
-            f -= 1
-        return p
-
-    @staticmethod
     def get_max_from_bank(bank):
-        int_bank = list(map(int, bank))
-        max_val = 0
-        for comb in itertools.combinations(int_bank, 12):
-            int_comb = Problem2.to_int(comb)
-            if int_comb > max_val:
-                max_val = int_comb
-        return max_val
+        to_remove = len(bank) - 12
+        stack = []
+
+        for digit in bank:
+            while to_remove and stack and stack[-1] < digit:
+                stack.pop()
+                to_remove -= 1
+            stack.append(digit)
+        result_digits = stack[:12]
+        return int("".join(result_digits))
 
     def answer(self) -> Any:
         with ThreadPoolExecutor() as executor:
