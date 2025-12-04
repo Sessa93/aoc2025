@@ -1,7 +1,7 @@
 from src.day_4.problem_1 import Problem1
 
 
-class TestProblem1Day3:
+class TestProblem1Day4:
     def test_simple_case(self):
         input = """
             ..@@.@@@@.

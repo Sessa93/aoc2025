@@ -1,13 +1,12 @@
 from pathlib import Path
 from typing import Any
-from rich import print
 
 from src.base.abstract_problem import AbstractProblem
 
 
 class Problem1(AbstractProblem):
     def __init__(self, input=Path(__file__).parent / "data/input.txt"):
-        super().__init__(name="Problem 1 Day 3", input=input)
+        super().__init__(name="Problem 1 Day 4", input=input)
 
     def get_input_from_string(self, input_string: str):
         return list(map(str.strip, input_string.strip().split("\n")))
@@ -38,25 +37,11 @@ class Problem1(AbstractProblem):
                 if grid[r][c] != "@":
                     continue
                 adj_rolls = sum(
-                    1 for nr, nc in self._neighbors(r, c, rows, cols) if grid[nr][nc] == "@"
+                    1
+                    for nr, nc in self._neighbors(r, c, rows, cols)
+                    if grid[nr][nc] == "@"
                 )
                 if adj_rolls < 4:
                     accessible += 1
 
         return accessible
-
-if __name__ == "__main__":
-    input = """
-    ..@@.@@@@.
-    @@@.@.@.@@
-    @@@@@.@.@@
-    @.@@@@..@.
-    @@.@@@@.@@
-    .@@@@@@@.@
-    .@.@.@.@@@
-    @.@@@.@@@@
-    .@@@@@@@@.
-    @.@.@@@.@.
-    """
-    problem = Problem1()
-    print(problem.answer())

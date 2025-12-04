@@ -12,6 +12,7 @@ from rich import print
 
 app = typer.Typer()
 
+
 def iter_problem_classes(package_name: str):
     package = importlib.import_module(package_name)
     seen = set()
@@ -49,17 +50,20 @@ def run(package_name: str = "src", day: int = None, problem: int = None):
         except Exception as exc:
             print(f"Error running {cls.__module__}.{cls.__name__}: {exc}")
 
+
 @app.command()
 def run_all():
     """Run all problems in the src package."""
     run()
 
+
 @app.command()
 def run_single(
-        day: int = Annotated[Optional[int], typer.Option( min=1, max=12)],
-        problem: int = Annotated[Optional[int], typer.Option("-p", min=1, max=2)],
+    day: int = Annotated[Optional[int], typer.Option(min=1, max=12)],
+    problem: int = Annotated[Optional[int], typer.Option("-p", min=1, max=2)],
 ):
     run(day=day, problem=problem)
+
 
 if __name__ == "__main__":
     app()
