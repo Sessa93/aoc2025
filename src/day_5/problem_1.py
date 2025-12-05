@@ -1,8 +1,6 @@
 from pathlib import Path
 from typing import Any
 
-from rich import print
-
 from src.base.abstract_problem import AbstractProblem
 
 
@@ -14,8 +12,8 @@ class Problem1(AbstractProblem):
         ranges = []
         ingredients = []
         for line in list(map(str.strip, input_string.strip().split("\n"))):
-            if '-' in line:
-                a, b = line.split('-')
+            if "-" in line:
+                a, b = line.split("-")
                 ranges.append((int(a), int(b)))
             elif line == "":
                 continue
@@ -37,20 +35,3 @@ class Problem1(AbstractProblem):
                     fresh_ingredient_count += 1
                     break
         return fresh_ingredient_count
-
-if __name__ == "__main__":
-    input = """
-        3-5
-        10-14
-        16-20
-        12-18
-        
-        1
-        5
-        8
-        11
-        17
-        32
-    """
-    problem = Problem1()
-    print(problem.answer())
