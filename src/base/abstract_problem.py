@@ -16,7 +16,7 @@ class AbstractProblem(abc.ABC):
         self.day = day
         self.problem_number = problem_number
         self.session_id = os.getenv("AOC_SESSION_ID")
-        print(self.session_id)
+
         if input:
             self.input = self.parse_input(input)
         else:
