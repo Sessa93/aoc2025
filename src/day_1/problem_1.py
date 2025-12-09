@@ -1,5 +1,4 @@
 import enum
-from pathlib import Path
 from typing import Any
 
 from src.base.abstract_problem import AbstractProblem
@@ -10,25 +9,15 @@ class RotationDirection(enum.Enum):
     R = "R"
 
 
-class ProblemDay1(AbstractProblem):
+class Problem1Day1(AbstractProblem):
     INITIAL_POSITION = 50
     POSITION_AT_ZERO = 0
     MAX_POSITION = 100
 
-    def __init__(self, input=Path(__file__).parent / "data/input.txt"):
-        super().__init__(name="Problem 1 Day 1", input=input)
+    def __init__(self, input=None):
+        super().__init__(day=1, problem_number=1, input=input)
 
-    def get_input_from_file(
-        self, file_path="./data/input.txt"
-    ) -> list[tuple[RotationDirection, int]]:
-        with open(file_path, "r") as file:
-            return [
-                (RotationDirection(line[0]), int(line[1:]))
-                for line in file.readlines()
-                if len(line) > 0
-            ]
-
-    def get_input_from_string(
+    def parse_input(
         self, input_string: str
     ) -> list[tuple[RotationDirection, int]]:
         return [

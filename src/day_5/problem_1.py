@@ -1,14 +1,13 @@
-from pathlib import Path
 from typing import Any
 
 from src.base.abstract_problem import AbstractProblem
 
 
-class Problem1(AbstractProblem):
-    def __init__(self, input=Path(__file__).parent / "data/input.txt"):
-        super().__init__(name="Problem 1 Day 5", input=input)
+class Problem1Day5(AbstractProblem):
+    def __init__(self, input=None):
+        super().__init__(day=5, problem_number=1, input=input)
 
-    def get_input_from_string(self, input_string: str):
+    def parse_input(self, input_string: str):
         ranges = []
         ingredients = []
         for line in list(map(str.strip, input_string.strip().split("\n"))):
@@ -20,11 +19,6 @@ class Problem1(AbstractProblem):
             else:
                 ingredients.append(int(line))
         return ingredients, ranges
-
-    def get_input_from_file(self, file_path: str):
-        with open(file_path, "r") as f:
-            map = f.read().strip()
-            return self.get_input_from_string(input_string=map)
 
     def answer(self) -> Any:
         ingredients, ranges = self.input

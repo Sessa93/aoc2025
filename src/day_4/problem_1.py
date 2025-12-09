@@ -1,20 +1,14 @@
-from pathlib import Path
 from typing import Any
 
 from src.base.abstract_problem import AbstractProblem
 
 
-class Problem1(AbstractProblem):
-    def __init__(self, input=Path(__file__).parent / "data/input.txt"):
-        super().__init__(name="Problem 1 Day 4", input=input)
+class Problem1Day4(AbstractProblem):
+    def __init__(self, input=None):
+        super().__init__(day=4, problem_number=1, input=input)
 
-    def get_input_from_string(self, input_string: str):
+    def parse_input(self, input_string: str):
         return list(map(str.strip, input_string.strip().split("\n")))
-
-    def get_input_from_file(self, file_path: str):
-        with open(file_path, "r") as f:
-            map = f.read().strip()
-            return self.get_input_from_string(input_string=map)
 
     @staticmethod
     def _neighbors(r: int, c: int, rows: int, cols: int):

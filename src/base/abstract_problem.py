@@ -2,24 +2,48 @@ import abc
 import time
 from pathlib import Path
 from typing import Any
+from rich import print
+
+import requests
 
 
 class AbstractProblem(abc.ABC):
     def __init__(
-        self, name: str, input: Any = Path(__file__).parent / "data/input.txt"
+        self,
+        day: int,
+        problem_number: int,
+        input: str = None
     ):
-        self.name = name
-        if self.is_str_input(input_data=input):
-            self.input = self.get_input_from_string(input_string=input)
+        self.name = f"Problem {problem_number} Day {day}"
+        self.day = day
+        self.problem_number = problem_number
+
+        if input:
+            self.input = self.parse_input(input)
         else:
-            self.input = self.get_input_from_file(file_path=input)
+            self.input = self.get_input()
 
     def __repr__(self):
         start = time.perf_counter()
         answer = self.answer()
         elapsed = time.perf_counter() - start
 
-        return f"Answer to {self.name}: {answer}, execution time: {float(f'{elapsed:.4f}')} seconds"
+        return f"[green]Answer to {self.name}: {answer}, execution time: {float(f'{elapsed:.4f}')} seconds[/green]"
+
+    def get_input(self):
+        input_file_path = Path(__file__).parent.parent / f"day_{self.day}/data" / "input.txt"
+        try:
+            with open(input_file_path, "r") as f:
+                file_input = f.read().strip()
+                return self.parse_input(input_string=file_input)
+        except FileNotFoundError:
+            print(f"[red]{input_file_path} not found![/red]")
+            print(f"[green]Fetching it from AoC...[/green]")
+            remote_input = self.get_input_from_aoc(day=self.day)
+
+            with open(input_file_path, "w") as f:
+                f.write(remote_input)
+            return self.parse_input(input_string=remote_input)
 
     @staticmethod
     def is_str_input(input_data: Any) -> bool:
@@ -29,12 +53,13 @@ class AbstractProblem(abc.ABC):
     def is_file_input(input_data: Any) -> bool:
         return isinstance(input_data, Path)
 
-    @abc.abstractmethod
-    def get_input_from_file(self, file_path: str) -> str:
-        raise NotImplementedError()
+    @staticmethod
+    def get_input_from_aoc(day: str) -> str:
+        remote_input = f"https://adventofcode.com/2025/day/{day}/input"
+        return requests.get(remote_input).text
 
     @abc.abstractmethod
-    def get_input_from_string(self, input_string: str) -> str:
+    def parse_input(self, input_string: str) -> str:
         raise NotImplementedError()
 
     @abc.abstractmethod

@@ -1,4 +1,4 @@
-from src.day_5.problem_1 import Problem1
+from src.day_5.problem_1 import Problem1Day5 as Problem
 
 
 class TestProblem1Day5:
@@ -17,13 +17,13 @@ class TestProblem1Day5:
             32
         """
 
-        problem = Problem1(input=input)
+        problem = Problem(input=input)
         answer = problem.answer()
 
         assert answer == 3
 
     def test_aoc_answer(self):
-        problem = Problem1()
+        problem = Problem()
         answer = problem.answer()
 
         assert answer == 720

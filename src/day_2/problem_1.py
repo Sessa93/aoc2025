@@ -1,26 +1,17 @@
-from pathlib import Path
 from typing import Any
 
 from src.base.abstract_problem import AbstractProblem
 
 
-class Problem1(AbstractProblem):
-    def __init__(self, input=Path(__file__).parent / "data/input.txt"):
-        super().__init__(name="Problem 1 Day 2", input=input)
+class Problem1Day2(AbstractProblem):
+    def __init__(self, input=None):
+        super().__init__(day=2, problem_number=1, input=input)
 
-    def get_input_from_string(self, input_string: str):
+    def parse_input(self, input_string: str):
         return [
             range(int(start), int(end) + 1)
             for start, end in (part.split("-") for part in input_string.split(","))
         ]
-
-    def get_input_from_file(self, file_path: str):
-        with open(file_path, "r") as f:
-            ranges_string = f.read().strip()
-            return [
-                range(int(start), int(end) + 1)
-                for start, end in (part.split("-") for part in ranges_string.split(","))
-            ]
 
     @staticmethod
     def is_valid_id(id: int) -> bool:

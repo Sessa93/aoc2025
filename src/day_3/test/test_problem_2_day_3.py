@@ -1,4 +1,4 @@
-from src.day_3.problem_2 import Problem2
+from src.day_3.problem_2 import Problem2Day3 as Problem
 
 
 class TestProblem1Day3:
@@ -10,13 +10,13 @@ class TestProblem1Day3:
             818181911112111
         """
 
-        problem = Problem2(input=input)
+        problem = Problem(input=input)
         answer = problem.answer()
 
         assert answer == 3121910778619
 
     def test_aoc_answer(self):
-        problem = Problem2()
+        problem = Problem()
         answer = problem.answer()
 
         assert answer == 171039099596062
