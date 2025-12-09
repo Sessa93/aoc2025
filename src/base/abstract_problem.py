@@ -1,23 +1,22 @@
 import abc
+import os
 import time
 from pathlib import Path
 from typing import Any
 from rich import print
-
+from dotenv import load_dotenv
 import requests
 
 
 class AbstractProblem(abc.ABC):
-    def __init__(
-        self,
-        day: int,
-        problem_number: int,
-        input: str = None
-    ):
+    def __init__(self, day: int, problem_number: int, input: str = None):
+        load_dotenv()
+
         self.name = f"Problem {problem_number} Day {day}"
         self.day = day
         self.problem_number = problem_number
-
+        self.session_id = os.getenv("AOC_SESSION_ID")
+        print(self.session_id)
         if input:
             self.input = self.parse_input(input)
         else:
@@ -31,7 +30,9 @@ class AbstractProblem(abc.ABC):
         return f"[green]Answer to {self.name}: {answer}, execution time: {float(f'{elapsed:.4f}')} seconds[/green]"
 
     def get_input(self):
-        input_file_path = Path(__file__).parent.parent / f"day_{self.day}/data" / "input.txt"
+        input_file_path = (
+            Path(__file__).parent.parent / f"day_{self.day}/data" / "input.txt"
+        )
         try:
             with open(input_file_path, "r") as f:
                 file_input = f.read().strip()
@@ -39,7 +40,7 @@ class AbstractProblem(abc.ABC):
         except FileNotFoundError:
             print(f"[red]{input_file_path} not found![/red]")
             print(f"[green]Fetching it from AoC...[/green]")
-            remote_input = self.get_input_from_aoc(day=self.day)
+            remote_input = self.get_input_from_aoc()
 
             with open(input_file_path, "w") as f:
                 f.write(remote_input)
@@ -53,10 +54,11 @@ class AbstractProblem(abc.ABC):
     def is_file_input(input_data: Any) -> bool:
         return isinstance(input_data, Path)
 
-    @staticmethod
-    def get_input_from_aoc(day: str) -> str:
-        remote_input = f"https://adventofcode.com/2025/day/{day}/input"
-        return requests.get(remote_input).text
+    def get_input_from_aoc(self) -> str:
+        remote_input = f"https://adventofcode.com/2025/day/{self.day}/input"
+        return requests.get(
+            remote_input, cookies={"session": self.session_id}
+        ).text
 
     @abc.abstractmethod
     def parse_input(self, input_string: str) -> str:

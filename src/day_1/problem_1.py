@@ -17,9 +17,7 @@ class Problem1Day1(AbstractProblem):
     def __init__(self, input=None):
         super().__init__(day=1, problem_number=1, input=input)
 
-    def parse_input(
-        self, input_string: str
-    ) -> list[tuple[RotationDirection, int]]:
+    def parse_input(self, input_string: str) -> list[tuple[RotationDirection, int]]:
         return [
             (RotationDirection(line.strip()[0]), int(line.strip()[1:]))
             for line in input_string.strip().split("\n")
