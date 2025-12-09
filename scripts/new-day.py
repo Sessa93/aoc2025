@@ -25,7 +25,7 @@ from src.base.abstract_problem import AbstractProblem
 
 class Problem{{problem_number}}Day{{day}}(AbstractProblem):
     def __init__(self, input=None):
-        super().__init__(day={{day}}, problem={{problem_number}}, input=input)
+        super().__init__(day={{day}}, problem_number={{problem_number}}, input=input)
     
     def parse_input(self, input_string: str):
         raise NotImplementedError()
