@@ -47,6 +47,6 @@ class Problem2Day4(AbstractProblem):
             for r, c in to_remove:
                 grid[r][c] = "."
             total_removed += len(to_remove)
-            print(f"Removed {len(to_remove)} cells, total removed: {total_removed}")
+            # print(f"Removed {len(to_remove)} cells, total removed: {total_removed}")
 
         return total_removed

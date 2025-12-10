@@ -27,7 +27,7 @@ class AbstractProblem(abc.ABC):
         answer = self.answer()
         elapsed = time.perf_counter() - start
 
-        return f"[green]Answer to {self.name}: {answer}, execution time: {float(f'{elapsed:.4f}')} seconds[/green]"
+        return f"Answer to {self.name}: {answer}, execution time: {float(f'{elapsed:.4f}')} seconds"
 
     def get_input(self):
         input_file_path = (
@@ -38,8 +38,8 @@ class AbstractProblem(abc.ABC):
                 file_input = f.read().strip()
                 return self.parse_input(input_string=file_input)
         except FileNotFoundError:
-            print(f"[red]{input_file_path} not found![/red]")
-            print(f"[green]Fetching it from AoC...[/green]")
+            print(f"{input_file_path} not found!")
+            print(f"Fetching it from AoC...")
             remote_input = self.get_input_from_aoc()
 
             with open(input_file_path, "w") as f:
