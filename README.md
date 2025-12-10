@@ -9,7 +9,7 @@ docker compose up --build test
 
 ### Run problems
 ```
-docker compose up --build execute
+docker compose up --build execute-all
 ```
 
 ### Get solution for specific day-problem combination

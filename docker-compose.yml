@@ -14,3 +14,10 @@ services:
       RUNTIME_TYPE: execute-single
       DAY: ${DAY}
       PROBLEM: ${PROBLEM}
+
+  execute-all:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RUNTIME_TYPE: execute-all
