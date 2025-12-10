@@ -68,7 +68,9 @@ def get_test_dir(day: str) -> Path:
 
 
 def create_data_file(day: str) -> None:
-    with open(get_data_dir(day=day) / '.gitkeep', "w"): pass
+    with open(get_data_dir(day=day) / ".gitkeep", "w"):
+        pass
+
 
 def create_problem_file(day: str, problem_number: int) -> None:
     problem_file_path = get_day_dir(day=day) / Path(f"problem_{problem_number}.py")

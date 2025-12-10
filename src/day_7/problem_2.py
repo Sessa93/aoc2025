@@ -8,7 +8,9 @@ class Problem2Day7(AbstractProblem):
     def __init__(self, input=None):
         super().__init__(day=7, problem_number=2, input=input)
 
-    def parse_input(self, input_string: str) -> Tuple[List[str], Optional[Tuple[int, int]]]:
+    def parse_input(
+        self, input_string: str
+    ) -> Tuple[List[str], Optional[Tuple[int, int]]]:
         stripped = input_string.strip("\n")
         lines = [line.rstrip("\n") for line in stripped.splitlines() if line.strip()]
         width = max(len(line) for line in lines)

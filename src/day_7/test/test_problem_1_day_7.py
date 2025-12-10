@@ -1,4 +1,3 @@
-
 from src.day_7.problem_1 import Problem1Day7 as Problem
 
 
@@ -27,7 +26,7 @@ class TestProblem1Day7:
         answer = problem.answer()
 
         assert answer == 21
-    
+
     def test_aoc_answer(self):
         problem = Problem()
         answer = problem.answer()

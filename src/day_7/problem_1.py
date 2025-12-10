@@ -8,7 +8,9 @@ class Problem1Day7(AbstractProblem):
     def __init__(self, input=None):
         super().__init__(day=7, problem_number=1, input=input)
 
-    def parse_input(self, input_string: str) -> Tuple[List[str], Optional[Tuple[int, int]]]:
+    def parse_input(
+        self, input_string: str
+    ) -> Tuple[List[str], Optional[Tuple[int, int]]]:
         stripped = input_string.strip("\n")
         lines = stripped.splitlines()
         width = max(len(line) for line in lines)
@@ -55,5 +57,3 @@ class Problem1Day7(AbstractProblem):
                     next_cols.add(col)
             active_cols = next_cols
         return splits
-
-

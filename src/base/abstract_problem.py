@@ -56,9 +56,7 @@ class AbstractProblem(abc.ABC):
 
     def get_input_from_aoc(self) -> str:
         remote_input = f"https://adventofcode.com/2025/day/{self.day}/input"
-        return requests.get(
-            remote_input, cookies={"session": self.session_id}
-        ).text
+        return requests.get(remote_input, cookies={"session": self.session_id}).text
 
     @abc.abstractmethod
     def parse_input(self, input_string: str) -> str:
