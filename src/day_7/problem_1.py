@@ -23,16 +23,10 @@ class Problem1Day7(AbstractProblem):
         return grid, start
 
     def answer(self) -> Any:
-        parsed = self.input
-
-        grid, start = parsed
-
+        grid, start = self.input
         rows = len(grid)
         cols = len(grid[0])
         start_row, start_col = start
-        if start_row + 1 >= rows:
-            return 0
-
         active_cols = {start_col}
         splits = 0
 
@@ -59,9 +53,7 @@ class Problem1Day7(AbstractProblem):
                         queue.append(col + 1)
                 else:
                     next_cols.add(col)
-
             active_cols = next_cols
-
         return splits
 
 

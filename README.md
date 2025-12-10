@@ -28,12 +28,17 @@ uv sync
 uv run pytest
 ```
 
-### Run problems
+### Run all problems
 ```
-PYTHONPATH=$(pwd) uv run python src/main.py
+PYTHONPATH=$(pwd) uv run python src/main.py run-all
 ```
 
 ### Get solution for specific day-problem combination
 ```
-PYTHONPATH=$(pwd) DAY= uv run python src/main.py
+PYTHONPATH=$(pwd) uv run python src/main.py run-single --day day-number --problem problem-number
+```
+
+### Generate a new day template
+```
+uv run --script scripts/new-day.py day-number
 ```
